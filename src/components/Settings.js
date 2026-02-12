@@ -39,11 +39,13 @@ export const Settings = (props) => {
   return (
     <Pane id="settings" maxWidth={props.settings.portrait ? '350px' : '100%'}>
       <SelectField
-        width={300}
-        inputHeight={38}
+        width="100%"
+        maxWidth={300}
+        inputHeight={40}
         label={t('select')}
         onChange={(e) => props.onLanguageChange(e.target.value)}
         defaultValue={langSelectDefaultValue()}
+        marginBottom={20}
       >
         {Translations.map((t) => (
           <option key={t.id} value={t.id}>
@@ -52,53 +54,65 @@ export const Settings = (props) => {
         ))}
       </SelectField>
 
-      <Checkbox
-        label={t('button.rotate')}
-        checked={props.settings.portrait}
-        onChange={() => props.onOrientationChange(!props.settings.portrait)}
-      />
-      <Checkbox
-        label={t('wifi.password.hide')}
-        checked={props.settings.hidePassword}
-        onChange={() =>
-          props.onHidePasswordChange(!props.settings.hidePassword)
-        }
-      />
-      <Checkbox
-        label={t('wifi.name.hiddenSSID')}
-        checked={props.settings.hiddenSSID}
-        onChange={() => props.onHiddenSSIDChange(!props.settings.hiddenSSID)}
-      />
+      <Pane marginBottom={20}>
+        <Checkbox
+          label={t('button.rotate')}
+          checked={props.settings.portrait}
+          onChange={() => props.onOrientationChange(!props.settings.portrait)}
+          marginBottom={12}
+        />
+        <Checkbox
+          label={t('wifi.password.hide')}
+          checked={props.settings.hidePassword}
+          onChange={() =>
+            props.onHidePasswordChange(!props.settings.hidePassword)
+          }
+          marginBottom={12}
+        />
+        <Checkbox
+          label={t('wifi.name.hiddenSSID')}
+          checked={props.settings.hiddenSSID}
+          onChange={() => props.onHiddenSSIDChange(!props.settings.hiddenSSID)}
+          marginBottom={12}
+        />
 
-      <Checkbox
-        label={t('cards.tip.hide')}
-        checked={props.settings.hideTip}
-        onChange={() => props.onHideTipChange(!props.settings.hideTip)}
-      />
+        <Checkbox
+          label={t('cards.tip.hide')}
+          checked={props.settings.hideTip}
+          onChange={() => props.onHideTipChange(!props.settings.hideTip)}
+        />
+      </Pane>
       <TextInputField
         type="number"
-        width={300}
+        width="100%"
+        maxWidth={300}
+        inputHeight={40}
         label={t('cards.additional')}
         value={props.settings.additionalCards}
         onChange={(e) => props.onAdditionalCardsChange(e.target.value)}
+        marginBottom={20}
       />
-      <RadioGroup
-        label={t('wifi.password.encryption')}
-        size={16}
-        value={props.settings.encryptionMode}
-        options={encryptionModes}
-        onChange={(e) => props.onEncryptionModeChange(e.target.value)}
-      />
-      <RadioGroup
-        label={t('wifi.encryption.eapMethod')}
-        size={16}
-        value={props.settings.eapMethod}
-        options={eapMethods}
-        className={`
-          ${props.settings.encryptionMode !== 'WPA2-EAP' && 'hidden'}
-        `}
-        onChange={(e) => props.onEapMethodChange(e.target.value)}
-      />
+      <Pane marginBottom={20}>
+        <RadioGroup
+          label={t('wifi.password.encryption')}
+          size={16}
+          value={props.settings.encryptionMode}
+          options={encryptionModes}
+          onChange={(e) => props.onEncryptionModeChange(e.target.value)}
+        />
+      </Pane>
+      <Pane>
+        <RadioGroup
+          label={t('wifi.encryption.eapMethod')}
+          size={16}
+          value={props.settings.eapMethod}
+          options={eapMethods}
+          className={`
+            ${props.settings.encryptionMode !== 'WPA2-EAP' && 'hidden'}
+          `}
+          onChange={(e) => props.onEapMethodChange(e.target.value)}
+        />
+      </Pane>
     </Pane>
   );
 };

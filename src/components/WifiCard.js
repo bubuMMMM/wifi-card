@@ -77,15 +77,17 @@ export const WifiCard = (props) => {
   return (
     <Card
       className="card-print"
-      elevation={3}
+      elevation={0}
+      background="#000"
+      border="1px solid #333"
       style={{ maxWidth: props.settings.portrait ? portraitWidth() : '100%' }}
     >
-      <Pane display="flex" paddingBottom={12}>
-        <img alt="icon" src={logo} width="24" height="24" />
+      <Pane display="flex" alignItems="center" paddingBottom={24}>
+        <img alt="icon" src={logo} width="20" height="20" style={{ marginRight: '10px' }} />
         <Heading
-          size={700}
-          paddingRight={10}
-          paddingLeft={10}
+          size={600}
+          color="#fff"
+          fontWeight={600}
           textAlign={props.settings.portrait ? 'center' : 'unset'}
         >
           {t('wifi.login')}
@@ -179,13 +181,13 @@ export const WifiCard = (props) => {
       {!props.settings.hideTip && (
         <>
           <hr />
-          <Paragraph>
-            <CameraIcon />
-            <MobilePhoneIcon />
-            <Text size={300} paddingRight={8} paddingLeft={8}>
+          <Pane display="flex" alignItems="center" gap={8}>
+            <CameraIcon color="#999" size={16} />
+            <MobilePhoneIcon color="#999" size={16} />
+            <Text size={300} color="#999">
               {t('wifi.tip')}
             </Text>
-          </Paragraph>
+          </Pane>
         </>
       )}
     </Card>

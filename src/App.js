@@ -140,18 +140,27 @@ function App() {
 
   return (
     <Pane>
-      <Pane display="flex">
-        <img alt="icon" src={logo} width="32" height="32" />
-        <Heading size={900} paddingRight={16} paddingLeft={16}>
+      <Pane display="flex" alignItems="center" marginBottom={32}>
+        <img alt="icon" src={logo} width="32" height="32" style={{ marginRight: '12px' }} />
+        <Heading size={900} color="#fff" fontWeight={700}>
           {t('title')}
         </Heading>
       </Pane>
-      <Pane>
-        <Paragraph marginTop={12}>{t('desc.use')}</Paragraph>
+      <Pane marginBottom={32}>
+        <Paragraph size={500} color="#999" lineHeight="1.6">
+          {t('desc.use')}
+        </Paragraph>
 
-        <Paragraph marginTop={12}>
+        <Paragraph marginTop={16} size={500} color="#999" lineHeight="1.6">
           {t('desc.privacy')}{' '}
-          <Link href="https://github.com/bndw/wifi-card">
+          <Link 
+            href="https://github.com/bndw/wifi-card"
+            color="#fff"
+            textDecoration="underline"
+            style={{ transition: 'opacity 0.2s' }}
+            onMouseEnter={(e) => e.target.style.opacity = '0.7'}
+            onMouseLeave={(e) => e.target.style.opacity = '1'}
+          >
             {t('desc.source')}
           </Link>
           .
@@ -184,8 +193,8 @@ function App() {
       <Button
         id="print"
         appearance="primary"
-        height={40}
-        marginRight={16}
+        height={48}
+        marginBottom={32}
         onClick={onPrint}
       >
         {t('button.print')}

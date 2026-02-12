@@ -3,11 +3,19 @@
   src: url(./SourceSerif4-Semibold.otf);
 }
 
+/* Vercel-style card */
 .card-print {
-  border-color: #aaa;
-  margin-bottom: 1em;
-  margin-top: 2em;
-  padding: 1em;
+  background: #000;
+  border: 1px solid #333;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  transition: border-color 0.2s ease;
+}
+
+.card-print:hover {
+  border-color: #666;
 }
 
 #print-area {
@@ -17,47 +25,160 @@
 .details {
   display: flex;
   align-items: center;
+  gap: 2rem;
 }
 
 .qrcode {
   max-width: 175px;
-  padding: 1em;
+  padding: 0;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
 }
 
 .hidden {
   display: none;
 }
+
+/* Vercel-style inputs */
 textarea {
-  background-color: #fff;
-  border: solid 1px #ddd;
-  font-family: 'Source Serif', serif !important;
-  font-size: 1.2em !important;
+  background-color: #000 !important;
+  border: 1px solid #333 !important;
+  border-radius: 6px !important;
+  color: #fff !important;
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  font-size: 0.875rem !important;
   margin-bottom: 0;
   height: 40px !important;
   min-height: 0px !important;
   overflow: hidden;
   resize: none;
+  padding: 0.5rem 0.75rem !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease !important;
 }
+
+textarea:hover {
+  border-color: #666 !important;
+}
+
+textarea:focus {
+  border-color: #fff !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px #fff !important;
+}
+
 textarea#password {
   height: 60px !important;
 }
 
+/* Labels */
+label {
+  color: #999 !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+}
+
 hr {
-  margin-top: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-top: 1px solid #333;
 }
 
-button {
-  height: 50px;
-  width: 180px;
+/* Vercel-style button */
+button#print {
+  height: 48px !important;
+  padding: 0 1.5rem !important;
+  background: #fff !important;
+  color: #000 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease, transform 0.1s ease !important;
+  box-shadow: none !important;
 }
 
+button#print:hover {
+  background: #fafafa !important;
+  transform: translateY(-1px);
+}
+
+button#print:active {
+  transform: translateY(0);
+}
+
+/* Settings panel */
 #settings {
-  margin-bottom: 1em;
-  padding: 1em;
+  background: #000;
+  border: 1px solid #333;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
 }
 
 #settings label span {
   margin-right: 8px;
+  color: #fff;
+}
+
+/* Select fields */
+select {
+  background-color: #000 !important;
+  border: 1px solid #333 !important;
+  border-radius: 6px !important;
+  color: #fff !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  transition: border-color 0.2s ease !important;
+}
+
+select:hover {
+  border-color: #666 !important;
+}
+
+select:focus {
+  border-color: #fff !important;
+  outline: none !important;
+}
+
+/* Input fields */
+input[type="number"],
+input[type="text"] {
+  background-color: #000 !important;
+  border: 1px solid #333 !important;
+  border-radius: 6px !important;
+  color: #fff !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  transition: border-color 0.2s ease !important;
+}
+
+input[type="number"]:hover,
+input[type="text"]:hover {
+  border-color: #666 !important;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+  border-color: #fff !important;
+  outline: none !important;
+}
+
+/* Checkboxes */
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Radio buttons */
+input[type="radio"] {
+  margin-right: 8px;
+  cursor: pointer;
 }
 
 @media print {
