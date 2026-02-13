@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "evergreen-ui": "^7.1.9",
     "i18next": "^25.8.0",
     "i18next-browser-languagedetector": "^8.2.0",
     "qrcode.react": "^4.2.0",

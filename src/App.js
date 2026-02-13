@@ -1,4 +1,3 @@
-import { Button, Heading, Link, Pane, Paragraph } from 'evergreen-ui';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import logo from '../src/images/wifi.png';
@@ -41,50 +40,28 @@ function App() {
   const onChangeLanguage = (language) => {
     html.style.direction = htmlDirection(language);
     i18n.changeLanguage(language);
-
     setSettings({ ...settings, lng: language });
   };
 
   const onPrint = () => {
     if (!settings.ssid.length) {
-      setErrors({
-        ...errors,
-        ssidError: t('wifi.alert.name'),
-      });
+      setErrors({ ...errors, ssidError: t('wifi.alert.name') });
       return;
     }
     if (settings.password.length < 8 && settings.encryptionMode === 'WPA') {
-      setErrors({
-        ...errors,
-        passwordError: t('wifi.alert.password.length.8'),
-      });
+      setErrors({ ...errors, passwordError: t('wifi.alert.password.length.8') });
       return;
     }
     if (settings.password.length < 5 && settings.encryptionMode === 'WEP') {
-      setErrors({
-        ...errors,
-        passwordError: t('wifi.alert.password.length.5'),
-      });
+      setErrors({ ...errors, passwordError: t('wifi.alert.password.length.5') });
       return;
     }
-    if (
-      settings.password.length < 1 &&
-      settings.encryptionMode === 'WPA2-EAP'
-    ) {
-      setErrors({
-        ...errors,
-        passwordError: t('wifi.alert.password'),
-      });
+    if (settings.password.length < 1 && settings.encryptionMode === 'WPA2-EAP') {
+      setErrors({ ...errors, passwordError: t('wifi.alert.password') });
       return;
     }
-    if (
-      settings.eapIdentity.length < 1 &&
-      settings.encryptionMode === 'WPA2-EAP'
-    ) {
-      setErrors({
-        ...errors,
-        eapIdentityError: t('wifi.alert.eapIdentity'),
-      });
+    if (settings.eapIdentity.length < 1 && settings.encryptionMode === 'WPA2-EAP') {
+      setErrors({ ...errors, eapIdentityError: t('wifi.alert.eapIdentity') });
       return;
     }
     document.title = 'WiFi Card - ' + settings.ssid;
@@ -132,51 +109,39 @@ function App() {
   };
 
   useEffect(() => {
-    // Ensure the page direction is set properly on first load
     if (htmlDirection() === 'rtl') {
       html.style.direction = 'rtl';
     }
   }, []);
 
   return (
-    <Pane>
-      <Pane display="flex" alignItems="center" marginBottom={32}>
-        <img alt="icon" src={logo} width="32" height="32" style={{ marginRight: '12px' }} />
-        <Heading size={900} color="#fff" fontWeight={700}>
-          {t('title')}
-        </Heading>
-      </Pane>
-      <Pane marginBottom={32}>
-        <Paragraph size={500} color="#999" lineHeight="1.6">
-          {t('desc.use')}
-        </Paragraph>
+    <div className="app">
+      <header className="app-header">
+        <img alt="WiFi Card icon" src={logo} width="28" height="28" />
+        <h1>{t('title')}</h1>
+      </header>
 
-        <Paragraph marginTop={16} size={500} color="#999" lineHeight="1.6">
+      <div className="app-description">
+        <p>{t('desc.use')}</p>
+        <p>
           {t('desc.privacy')}{' '}
-          <Link 
-            href="https://github.com/bndw/wifi-card"
-            color="#fff"
-            textDecoration="underline"
-            style={{ transition: 'opacity 0.2s' }}
-            onMouseEnter={(e) => e.target.style.opacity = '0.7'}
-            onMouseLeave={(e) => e.target.style.opacity = '1'}
-          >
+          <a href="https://github.com/bndw/wifi-card" target="_blank" rel="noopener noreferrer">
             {t('desc.source')}
-          </Link>
+          </a>
           .
-        </Paragraph>
-      </Pane>
-      <Pane>
-        <WifiCard
-          settings={settings}
-          ssidError={errors.ssidError}
-          passwordError={errors.passwordError}
-          eapIdentityError={errors.eapIdentityError}
-          onSSIDChange={onSSIDChange}
-          onEapIdentityChange={onEapIdentityChange}
-          onPasswordChange={onPasswordChange}
-        />
-      </Pane>
+        </p>
+      </div>
+
+      <WifiCard
+        settings={settings}
+        ssidError={errors.ssidError}
+        passwordError={errors.passwordError}
+        eapIdentityError={errors.eapIdentityError}
+        onSSIDChange={onSSIDChange}
+        onEapIdentityChange={onEapIdentityChange}
+        onPasswordChange={onPasswordChange}
+      />
+
       <Settings
         settings={settings}
         firstLoad={firstLoad}
@@ -190,16 +155,12 @@ function App() {
         onAdditionalCardsChange={onAdditionalCardsChange}
         onHideTipChange={onHideTipChange}
       />
-      <Button
-        id="print"
-        appearance="primary"
-        height={48}
-        marginBottom={32}
-        onClick={onPrint}
-      >
+
+      <button className="btn-print" onClick={onPrint}>
         {t('button.print')}
-      </Button>
-      <Pane id="print-area">
+      </button>
+
+      <div id="print-area">
         {settings.additionalCards >= 1 &&
           [...Array(settings.additionalCards)].map((el, idx) => (
             <WifiCard
@@ -214,8 +175,8 @@ function App() {
               onPasswordChange={onPasswordChange}
             />
           ))}
-      </Pane>
-    </Pane>
+      </div>
+    </div>
   );
 }
 
